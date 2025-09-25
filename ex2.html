@@ -1,0 +1,19 @@
+<!doctype html>
+<html>
+
+<body>
+    <h1>Post #1</h1>
+    <div id="post"></div>
+
+    <script>
+        fetch("https://jsonplaceholder.typicode.com/posts/1")
+            .then(response => response.json())
+            .then(function (response) {
+                let post = document.getElementById("post");
+                post.innerHTML = response.title + '<br>' + response.body;
+            })
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,29 @@
+<!-- Build a small search. When the user enters a number and clicks “Search”, fetch posts for that userId (/posts?userId=X) and display the titles -->
+
+<!doctype html>
+<html>
+
+<body>
+    <h1>Search posts by userId</h1>
+    <input id="uid" placeholder="Enter userId (1-10)">
+    <button id="search" onclick="search()">Search</button>
+    <ul id="results"></ul>
+
+    <script>
+        function search() {
+            let user_id = document.getElementById("uid").value;
+            let list = document.getElementById("results");
+            list.innerHTML = '';
+
+            fetch(`https://jsonplaceholder.typicode.com/posts?userId=${user_id}`)
+                .then(response => response.json())
+                .then(arr => arr.forEach(element => {
+                    let li_el = document.createElement("li")
+                    li_el.innerHTML = element.title
+                    list.appendChild(li_el)
+                }))
+        }
+    </script>
+</body>
+
+</html>
